@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=" 'A Grande Família' - Um espaço acolhedor para fazer amigos e conversar. Fundada em 24 de Janeiro com mais de 1000 membros ativos.">
+    <meta name="discord:title" content="A Grande Família">
+<meta property="og:site_name" content=" ">
+<meta name="theme-color" content="#000000">
+
+    <title>A Grande Família</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👪</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff0000;
+            --secondary: #000000;
+            --accent: #990000;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            scroll-behavior: smooth;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .discord-btn {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(255, 0, 0, 0.2);
+        }
+        
+        .discord-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(255, 0, 0, 0.3);
+        }
+        
+        .rule-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .rule-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.1);
+            color: var(--primary);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            bottom: -5px;
+            left: 25%;
+            background-color: var(--primary);
+        }
+        
+        .logo-container {
+            filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5));
+            transition: all 0.3s ease;
+        }
+        
+        .logo-container:hover {
+            filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.7));
+            transform: rotate(5deg);
+        }
+
+        /* Acessibility improvements */
+        :focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Performance optimizations */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Mobile menu animation */
+        #mobile-menu {
+            transition: all 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        #mobile-menu.active {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-black/90 backdrop-blur-md fixed w-full z-50 border-b border-red-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 logo-container">
+                        <img src="imagens/logo.jpg" alt="Logo A Grande Família" class="h-10 rounded-full">
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="nav-link text-white hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium transition">Home</a>
+                        <a href="#rules" class="nav-link text-white hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium transition">Regras</a>
+                        <a href="#about" class="nav-link text-white hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium transition">Informações</a>
+                        <a href="#contact" class="nav-link text-white hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium transition">Contato</a>
+                        <a href="https://discord.gg/Td27vsBf6V" target="_blank" class="ml-4 discord-btn bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition">
+                            <i class="fab fa-discord mr-2"></i>Entrar no Servidor
+                        </a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none" aria-expanded="false" aria-controls="mobile-menu">
+                        <span class="sr-only">Abrir menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/95">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-red-500 hover:bg-gray-800">Home</a>
+                <a href="#rules" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-red-500 hover:bg-gray-800">Regras</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-red-500 hover:bg-gray-800">Informações</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-red-500 hover:bg-gray-800">Contato</a>
+                <a href="https://discord.gg/Td27vsBf6V" target="_blank" class="block discord-btn bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-base font-medium text-center mx-3 my-2">
+                    <i class="fab fa-discord mr-2"></i>Entrar no Servidor
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="md:w-1/2 mb-12 md:mb-0" data-aos="fade-right">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">
+                        <span class="text-red-600">A Grande</span> Família
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-300 mb-6">
+                        Uma comunidade Discord onde todos são bem-vindos! Fundada em 24 de Janeiro, já reunimos mais de <span class="text-red-500 font-bold">1000 membros</span> em busca de amizades e conversas animadas.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="https://discord.gg/Td27vsBf6V" target="_blank" class="discord-btn bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg text-lg font-semibold transition flex items-center justify-center">
+                            <i class="fab fa-discord mr-3 text-xl"></i> Junte-se a Nós
+                        </a>
+                        <a href="#about" class="border border-red-600 text-red-500 hover:bg-red-600 hover:text-white px-6 py-3 rounded-lg text-lg font-semibold transition flex items-center justify-center">
+                            <i class="fas fa-info-circle mr-3"></i> Saiba Mais
+                        </a>
+                    </div>
+                    <div class="mt-8 flex items-center space-x-4">
+                        <div class="flex items-center">
+                            <div class="flex -space-x-2">
+                                <img src="https://i.postimg.cc/BvbztH2L/anabanana.png" class="inline-block h-10 w-10 rounded-full ring-2 ring-red-600"  alt="User">   
+                                <img src="https://i.postimg.cc/2S8cXhcc/bibi.png" class="inline-block h-10 w-10 rounded-full ring-2 ring-red-600"  alt="User">   
+                                <img src="https://i.postimg.cc/g01gJ5YQ/danike.png" class="inline-block h-10 w-10 rounded-full ring-2 ring-red-600"  alt="User">   
+                            </div>
+                         </div>
+
+                        <div>
+                            <p class="text-sm text-gray-400">+1000 membros ativos</p>
+                            <div class="flex items-center">
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-400 mr-1" aria-hidden="true"></i>
+                                    <i class="fas fa-star text-yellow-400 mr-1" aria-hidden="true"></i>
+                                    <i class="fas fa-star text-yellow-400 mr-1" aria-hidden="true"></i>
+                                    <i class="fas fa-star text-yellow-400 mr-1" aria-hidden="true"></i>
+                                    <i class="fas fa-star text-yellow-400" aria-hidden="true"></i>
+                                </div>
+                                <span class="ml-2 text-sm text-gray-400">5.0 (200+ avaliações)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <div class="relative">
+                        <div class="absolute -top-6 -left-6 w-full h-full border-3 border-red-600 rounded-lg z-0"></div>
+                        <div class="relative z-10 bg-gray-900 rounded-lg overflow-hidden shadow-xl">
+                            <img src="imagens/logo.jpg" alt="" class="w-full h-[400px] sm:h-[500px] md:h-[600px] object-cover rounded-lg rounded-full ring-2 ring-red-600">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 p-6">
+                                <h3 class="text-xl font-bold text-white">Venha fazer parte da nossa família!</h3>
+                                <p class="text-red-300">Conversas animadas, eventos exclusivos e muita diversão.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rules Section -->
+    <section id="rules" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-white mb-4">Regras da Comunidade</h2>
+                <p class="max-w-2xl mx-auto text-gray-400">Para manter um ambiente saudável e agradável para todos, pedimos que sigam nossas regras.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- General Rules -->
+                <div class="rule-card bg-gray-800 rounded-lg overflow-hidden shadow-lg border-l-4 border-red-600" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-red-600 rounded-full p-2 mr-4">
+                                <i class="fas fa-scroll text-white" aria-hidden="true"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Regras Gerais 📜</h3>
+                        </div>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Respeito 🤝:</strong> Trate todos os membros com respeito, independentemente de suas opiniões, origens ou interesses.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Comportamento apropriado 🙏:</strong> Evite atitudes ofensivas, agressivas ou tóxicas.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Linguagem adequada 💬:</strong> Evite palavrões ou linguagem inapropriada. Mantenha o chat limpo e agradável para todos.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Spam e flood 🚫:</strong> Evite enviar mensagens repetidas ou em excesso que possam atrapalhar a conversa.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Behavior Rules -->
+                <div class="rule-card bg-gray-800 rounded-lg overflow-hidden shadow-lg border-l-4 border-red-600" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-red-600 rounded-full p-2 mr-4">
+                                <i class="fas fa-users text-white" aria-hidden="true"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Regras de Comportamento 🤝</h3>
+                        </div>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Sem assédio ou toxicidade 🚫</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Evite tópicos polêmicos 🤐</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Moderação no uso de CAPS LOCK e emojis 📝</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Respeite os canais 📌:</strong> Utilize cada canal para seu propósito específico.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Technical Rules -->
+                <div class="rule-card bg-gray-800 rounded-lg overflow-hidden shadow-lg border-l-4 border-red-600" data-aos="fade-up" data-aos-delay="300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-red-600 rounded-full p-2 mr-4">
+                                <i class="fas fa-laptop-code text-white" aria-hidden="true"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Regras Técnicas 💻</h3>
+                        </div>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Proibição de bots não autorizados 🤖</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Privacidade em primeiro lugar 🤐</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Proibido o uso de exploits e hacks 🚫</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Não compartilhe links suspeitos 🔗:</strong> Links maliciosos ou não verificados são estritamente proibidos.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Staff Rules -->
+                <div class="rule-card bg-gray-800 rounded-lg overflow-hidden shadow-lg border-l-4 border-red-600" data-aos="fade-up" data-aos-delay="400">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-red-600 rounded-full p-2 mr-4">
+                                <i class="fas fa-user-shield text-white" aria-hidden="true"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Regras da Equipe 👥</h3>
+                        </div>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Uso justo dos poderes administrativos 💪</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Boa comunicação com os membros 📢</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Transparência nas ações 👁️:</strong> Tome decisões claras e justificáveis.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Disponibilidade ⏱️:</strong> Mantenha-se ativo e disponível para ajudar os membros.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Punishments -->
+                <div class="rule-card bg-gray-800 rounded-lg overflow-hidden shadow-lg border-l-4 border-red-600" data-aos="fade-up" data-aos-delay="500">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-red-600 rounded-full p-2 mr-4">
+                                <i class="fas fa-gavel text-white" aria-hidden="true"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Punições 🚫</h3>
+                        </div>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Sistema de advertências para infrações leves 📝</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Mute temporário em casos moderados ⏳</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Banimento imediato em casos graves 🔥</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mr-2 mt-1" aria-hidden="true"></i>
+                                <span><strong>Recorrência de infrações 🔄:</strong> Infrações repetidas podem resultar em punições mais severas.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Join Card -->
+                <div class="rule-card bg-gradient-to-br from-red-900 to-black rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="600">
+                    <div class="p-6 h-full flex flex-col justify-center items-center text-center">
+                        <i class="fab fa-discord text-5xl text-white mb-4" aria-hidden="true"></i>
+                        <h3 class="text-xl font-bold text-white mb-4">Pronto para se juntar a nós?</h3>
+                        <p class="text-gray-300 mb-6">Siga as regras e faça parte dessa grande família!</p>
+                        <a href="https://discord.gg/Td27vsBf6V" target="_blank" class="discord-btn bg-white hover:bg-gray-100 text-red-600 px-6 py-3 rounded-lg text-lg font-semibold transition">
+                            <i class="fab fa-discord mr-2" aria-hidden="true"></i> Entrar Agora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 px-4 sm:px-6 lg:px-8 bg-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-white mb-4">Sobre Nós</h2>
+                <p class="max-w-2xl mx-auto text-gray-400">Conheça mais sobre a Grande Família e nosso propósito.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                <!-- Card Nossa História -->
+                <div data-aos="fade-right">
+                    <div class="relative h-full">
+                        <div class="absolute -inset-2 bg-red-600 rounded-lg blur opacity-75"></div>
+                        <div class="relative bg-gray-900 rounded-lg overflow-hidden shadow-xl p-8 h-full">
+                            <h3 class="text-2xl font-bold text-white mb-4">Nossa História</h3>
+                            <p class="text-gray-300 mb-4">
+                                Fundada em <span class="text-red-500 font-bold">24 de Janeiro</span>, a Grande Família nasceu da ideia de criar um espaço acolhedor no Discord, onde pessoas de todos os lugares pudessem se conectar, fazer amigos e compartilhar momentos especiais.
+                            </p>
+                            <p class="text-gray-300 mb-6">
+                                Com mais de <span class="text-red-500 font-bold">1000 membros</span>, nossa comunidade cresce a cada dia, mantendo sempre o foco na criação de amizades genuínas e na manutenção de um ambiente saudável e divertido para todos.
+                            </p>
+                            <div class="flex items-center">
+                                <div class="bg-red-600 rounded-full p-2 mr-4">
+                                    <i class="fas fa-heart text-white" aria-hidden="true"></i>
+                                </div>
+                                <p class="text-gray-300">
+                                    <strong>Chats ativos</strong>, <strong>moderação presente</strong> e <strong>eventos exclusivos</strong> são alguns dos diferenciais que fazem da Grande Família um lugar especial.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Card Dona Principal -->
+                <div data-aos="fade-left">
+                    <div class="relative h-full">
+                        <div class="absolute -inset-2 bg-red-600 rounded-lg blur opacity-75"></div>
+                        <div class="relative bg-gray-900 rounded-lg overflow-hidden shadow-xl p-8 h-full">
+                            <h3 class="text-2xl font-bold text-white mb-6">Dona Principal</h3>
+                            <div class="flex items-center mb-6">
+                                <img src="https://i.postimg.cc/Zn4FvzX7/kim.png" alt="Dona Principal" class="inline-block h-10 w-10 rounded-full ring-2 ring-red-600">
+                                <div class="ml-4">
+                                    <h4 class="text-xl font-semibold text-white">kim</h4>
+                                    <p class="text-gray-400">Fundadora e Líder da Comunidade</p>   </a>
+                                    <a href="https://discord.com/users/1322421390892077109" target="_blank" class="social-icon text-gray-400 hover:text-red-500 text-xl flex items-center mt-2" aria-label="Discord da kim">
+                                        <i class="fab fa-discord" aria-hidden="true"></i>
+                                        <span class="ml-2 text-sm text-gray-300 font-bold">Discord da kim</span>
+                              
+                                    </a>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 mb-6">
+                                A nossa querida dona é a pessoa principal do servidor, ela mantém o servidor em ordem e trás diversas melhorias para todos.
+                            </p>
+                            <p class="text-gray-300">
+                                Sua paixão por conectar pessoas e criar um ambiente acolhedor é o que faz da nossa comunidade um lugar único no Discord.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            
+            <div class="mt-16" data-aos="fade-up">
+                <div class="bg-gradient-to-r from-red-900 to-black rounded-lg overflow-hidden p-8 text-center">
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">Por que se juntar à Grande Família?</h3>
+                    <p class="max-w-3xl mx-auto text-gray-300 mb-6">
+                        Aqui você encontra amizades verdadeiras, conversas animadas sobre diversos temas, eventos exclusivos e um ambiente moderado onde todos se sentem seguros e acolhidos.
+                    </p>
+                    <a href="https://discord.gg/Td27vsBf6V" target="_blank" class="discord-btn bg-white hover:bg-gray-100 text-red-600 px-8 py-3 rounded-lg text-lg font-semibold inline-flex items-center transition">
+                        <i class="fab fa-discord mr-2" aria-hidden="true"></i> Quero Participar!
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-white mb-4">Contato</h2>
+                <p class="max-w-2xl mx-auto text-gray-400">Entre em contato com os donos através das redes sociais.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Owner 1 - Com borda glow -->
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative h-full">
+                        <div class="absolute -inset-2 bg-red-600 rounded-lg blur opacity-75"></div>
+                        <div class="relative bg-gray-800 rounded-lg overflow-hidden shadow-lg p-8 h-full text-center">
+                            <div class="w-24 h-24 mx-auto mb-6 rounded-full border-2 border-red-600 overflow-hidden">
+                                <img src="https://i.postimg.cc/hPKpfVBD/victor.jpg" alt="Victor" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Victor</h3>
+                            <p class="text-gray-400 mb-6">Fundador</p>
+                            <div class="flex justify-center space-x-4">
+                                <a href="https://instagram.com/victor.n7d" target="_blank" class="social-icon text-gray-400 hover:text-red-500 text-xl" aria-label="Instagram do Victor">
+                                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://discord.com/users/917627269135101992" target="_blank" class="social-icon text-gray-400 hover:text-red-500 text-xl" aria-label="Discord do Victor">
+                                    <i class="fab fa-discord" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="mt-6">
+                                <span class="text-gray-500">@victor.n7d</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Owner 2 - Com borda glow -->
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative h-full">
+                        <div class="absolute -inset-2 bg-red-600 rounded-lg blur opacity-75"></div>
+                        <div class="relative bg-gray-800 rounded-lg overflow-hidden shadow-lg p-8 h-full text-center">
+                            <div class="w-24 h-24 mx-auto mb-6 rounded-full border-2 border-red-600 overflow-hidden">
+                                <img src="https://i.postimg.cc/rm69crjL/vyke.png" alt="Thatvyke" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Thatvyke</h3>
+                            <p class="text-gray-400 mb-6">Co-Fundador</p>
+                            <div class="flex justify-center space-x-4">
+                                <a href="https://instagram.com/thatvyke" target="_blank" class="social-icon text-gray-400 hover:text-red-500 text-xl" aria-label="Instagram do Thatvyke">
+                                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://discord.com/users/1322421390892077109" target="_blank" class="social-icon text-gray-400 hover:text-red-500 text-xl" aria-label="Discord do Thatvyke">
+                                    <i class="fab fa-discord" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="mt-6">
+                                <span class="text-gray-500">@thatvyke</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Owner 3 - Com borda glow -->
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative h-full">
+                        <div class="absolute -inset-2 bg-red-600 rounded-lg blur opacity-75"></div>
+                        <div class="relative bg-gray-800 rounded-lg overflow-hidden shadow-lg p-8 h-full text-center">
+                            <div class="w-24 h-24 mx-auto mb-6 rounded-full border-2 border-red-600 overflow-hidden">
+                                <img src="https://i.postimg.cc/C5gJCqn4/chandon.png" alt="Chandon" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Chandon</h3>
+                            <p class="text-gray-400 mb-6">Co-fundador</p>
+                            <div class="flex justify-center space-x-4">
+                                <a href="https://instagram.com/chandon.vip" target="_blank" class="social-icon text-gray-400 hover:text-red-500 text-xl" aria-label="Instagram da Chandon">
+                                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://discord.com/users/1305030247565230164" target="_blank" class="social-icon text-gray-400 hover:text-red-500 text-xl" aria-label="Discord da Chandon">
+                                    <i class="fab fa-discord" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="mt-6">
+                                <span class="text-gray-500">@chandon.vip</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center" data-aos="fade-up">
+                <h3 class="text-2xl font-bold text-white mb-4">Dúvidas ou Sugestões?</h3>
+                <p class="max-w-2xl mx-auto text-gray-400 mb-6">Entre em nosso servidor do Discord e converse diretamente com nossa equipe.</p>
+                <a href="https://discord.gg/Td27vsBf6V" target="_blank" class="discord-btn bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg text-lg font-semibold inline-flex items-center transition">
+                    <i class="fab fa-discord mr-2" aria-hidden="true"></i> Acesse Nosso Discord
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative bg-black py-4 px-4 sm:px-4 lg:px-4 border-t border-gray-800 overflow-hidden">
+        <!-- Glow da borda -->
+        <div class="absolute -inset-2 bg-red-600 rounded-lg blur opacity-50 pointer-events-none z-0"></div>
+    
+        <div class="relative max-w-7xl mx-auto z-10">
+            <div class="flex justify-center items-center text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-black">
+                    <span class="text-red-600">A Grande</span> Família
+                </h1>
+            </div>
+        </div>
+    
+                </div>
+    </div>
+                <div class="flex justify-center md:justify-end">
+                    <div class="flex space-x-6">
+                        <a href="https://discord.gg/Td27vsBf6V" target="_blank" class="text-gray-400 hover:text-red-500" aria-label="Discord da comunidade">
+                            <i class="fab fa-discord text-xl" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-red-500" aria-label="Instagram da comunidade">
+                            <i class="fab fa-instagram text-xl" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-red-500" aria-label="Twitter da comunidade">
+                            <i class="fab fa-tiktok text-xl" aria-hidden="true"></i>
+                         </a></a>
+                    </div>
+                </div>
+                   </div>
+                   <div class="flex flex-col md:flex-row justify-between items-start gap-8 mt-12">
+                    <div data-aos="fade-right" data-aos-delay="200">
+                        <div class="relative h-auto w-full md:w-[400px] transform transition duration-300 hover:scale-105">
+                            <!-- Borda glow -->
+                            <div class="absolute -inset-2 bg-red-600 rounded-lg blur opacity-75"></div>
+                    
+                            <!-- Card principal -->
+                            <div class="relative bg-gray-800 rounded-lg overflow-hidden shadow-lg p-4 h-[320px] text-center flex flex-col justify-start">
+                                <!-- Imagem + nome -->
+                                <div>
+                                    <div class="w-20 h-20 mx-auto mb-4 rounded-full border-2 border-red-600 overflow-hidden">
+                                        <img src="https://i.postimg.cc/J0YD7w8B/system.png" alt="system" class="w-full h-full object-cover">
+                                    </div>
+                                    <h3 class="text-xl font-bold text-white mb-1">system</h3>
+                                    <p class="text-gray-400 mb-3">site designer</p>
+                                </div>
+                    
+                                <!-- Redes sociais -->
+                                <div class="flex justify-center space-x-4 mb-3">
+                                    <a href="https://instagram.com/lux771_" target="_blank" class="social-icon text-gray-400 hover:text-red-500 text-xl">
+                                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="https://discord.com/users/1044241427825168435" target="_blank" class="social-icon text-gray-400 hover:text-red-500 text-xl">
+                                        <i class="fab fa-discord" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="https://www.tiktok.com/@luxx771_" target="_blank" class="social-icon text-gray-400 hover:text-red-500 text-xl">
+                                        <i class="fab fa-tiktok" aria-hidden="true"></i>    
+                                    </a>
+                                </div>
+                    
+                                <!-- Texto adicional -->
+                                <p class="text-gray-400 text-sm">
+                                    Desenvolvedor de sites front-end. Entre em contato caso se interesse.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div data-aos="fade-left" data-aos-delay="300">
+                        <div class="relative h-auto w-full md:w-[400px] transform transition duration-300 hover:scale-105">
+                            <div class="absolute -inset-2 bg-red-600 rounded-lg blur opacity-75"></div>
+                            <div class="relative bg-gray-800 rounded-lg overflow-hidden shadow-lg p-4 h-auto text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Servidor no Discord</h3>
+                                <div class="rounded-lg overflow-hidden border-2 border-red-600">
+                                    <iframe
+                                        src="https://discord.com/widget?id=1332289781182500957&theme=dark"
+                                        width="100%"
+                                        height="250"
+                                        allowtransparency="true"
+                                        frameborder="0"
+                                        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+                                        class="w-full h-[250px]">
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+    </div>
+            
+                   
+            </div>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            disable: window.innerWidth < 768
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!mobileMenu.contains(event.target) && event.target !== mobileMenuButton) {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('active');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenu.classList.remove('active');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    }
+                    
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add shadow to navbar on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 10) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+
+        // Lazy load images
+        if ('loading' in HTMLImageElement.prototype) {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            images.forEach(img => {
+                img.src = img.dataset.src;
+            });
+        } else {
+            // Fallback for browsers that don't support lazy loading
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
+            script.async = true;
+            document.body.appendChild(script);
+        }
+    </script>
+</body>
+</html>
